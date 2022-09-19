@@ -4,16 +4,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
 import { BaseCardComponent } from './base-card/base-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropComponent } from './drag-drop/drag-drop.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MaterialModule } from './material.module';
+import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardComponent,
-    BaseCardComponent
+    BaseCardComponent,
+    DragDropComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    DragDropModule,
+    MatToolbarModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

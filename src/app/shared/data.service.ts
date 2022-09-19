@@ -20,6 +20,17 @@ export class DataService implements OnInit, OnDestroy {
       this.loadOptions();
     }
 
+    public get useShowcaseVersion() {
+      return this._userOptions.useShowcaseVersion;
+    }
+
+    public set useShowcaseVersion(value: boolean) {
+      this._userOptions.useShowcaseVersion = value;
+      console.log('set new value of useShowcaseVersion: ' + value)
+      console.log('firing this event bitch')
+      this.userOptionsSubject.next(this._userOptions);
+    }
+
     private loadOptions(): void {
         let opts = this.storage.get('userOptions');
         if (!opts) {

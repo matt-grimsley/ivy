@@ -1,0 +1,9 @@
+<mat-toolbar>
+    <button mat-icon-button class="example-icon" (click)="settingsClicked()">
+     <mat-icon>settings</mat-icon>
+   </button>
+   <span class="spacer">Ivy Tracker</span>   
+ </mat-toolbar>
+ <mat-toolbar *ngIf="isExpanded">
+    <mat-slide-toggle class="slide-toggle" [checked]="isShowcaseToggleChecked" (change)="onToggle($event)">Use Showcase version</mat-slide-toggle>
+ </mat-toolbar>
