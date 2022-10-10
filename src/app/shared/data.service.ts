@@ -1,9 +1,12 @@
 import { OnDestroy, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserOptions } from './user-options.model';
 import { LocalStorageService } from './local-storage.service';
+import { CardResponse } from './card-response';
+
+type objType = { name: null };
 
 @Injectable({
     providedIn: 'root'
@@ -17,18 +20,32 @@ export class DataService implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-      this.loadOptions();
+        this.loadOptions();
     }
 
     public get useShowcaseVersion() {
-      return this._userOptions.useShowcaseVersion;
+        return this._userOptions.useShowcaseVersion;
     }
 
     public set useShowcaseVersion(value: boolean) {
-      this._userOptions.useShowcaseVersion = value;
-      console.log('set new value of useShowcaseVersion: ' + value)
-      console.log('firing this event bitch')
-      this.userOptionsSubject.next(this._userOptions);
+        this._userOptions.useShowcaseVersion = value;
+        console.log('set new value of useShowcaseVersion: ' + value);
+        console.log('firing this event bitch');
+        this.userOptionsSubject.next(this._userOptions);
+    }
+
+    callAPI(searchValue: string): Observable<CardResponse> {
+        //  let req = 'https://api.scryfall.com/cards/named?exact=' + searchValue
+        //  console.log(req)
+        //  this.http.get<Card>(req).subscribe(res => {
+
+        //   let c: Card = res;
+        //   console.log(c);
+        //   return c as Card;
+        //  })
+        return this.http.get<CardResponse>(
+            'https://api.scryfall.com/cards/named?exact=' + searchValue
+        );
     }
 
     private loadOptions(): void {
@@ -41,11 +58,11 @@ export class DataService implements OnInit, OnDestroy {
     }
 
     private saveOptions(): void {
-      this.storage.set('userOptions', this._userOptions);
+        this.storage.set('userOptions', this._userOptions);
     }
 
     ngOnDestroy(): void {
-      this.saveOptions();
+        this.saveOptions();
     }
 
     // fuzzySearch(searchValue: string) {

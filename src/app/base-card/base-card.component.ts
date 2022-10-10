@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Card } from '../shared/card.model';
 import { DataService } from '../shared/data.service';
@@ -11,11 +11,11 @@ import { DataService } from '../shared/data.service';
 export class BaseCardComponent implements OnInit {
     userOptionsSub: Subscription;
     card: Card;
-    useShowcaseVersion: boolean;
+    useShowcaseVersion: boolean | undefined;
 
     constructor(private data: DataService) {
+        //this.card = new Card('Ivy, Gleeful Spellthief', 'assets/card-back.jpg');
         this.card = new Card('Ivy, Gleeful Spellthief', 'assets/card-back.jpg');
-        this.useShowcaseVersion = false;
 
         this.userOptionsSub = data.userOptionsSubject.subscribe((opts) => {
             this.useShowcaseVersion = opts.useShowcaseVersion;

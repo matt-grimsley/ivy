@@ -2,4 +2,10 @@
     <div class="box" cdkDragBoundary=".boundary" cdkDrag>
         <app-base-card></app-base-card>
     </div>
+    <div class="box" cdkDragBoundary=".boundary" cdkDrag>
+        <app-base-card></app-base-card>
+    </div>
+    <div class="box" cdkDragBoundary=".boundary" cdkDrag *ngFor="let card of stack">
+        <app-card [card]="card"></app-card>
+    </div>
 </div>

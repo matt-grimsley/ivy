@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Card } from './card.model';
+import { CardResponse } from './card-response';
 
 @Injectable({
     providedIn: 'root'
@@ -11,21 +11,21 @@ export class CardService {
         'https://c1.scryfall.com/file/scryfall-cards/normal/front/4/5/45cba0d0-ca77-47c0-8f77-7beedb6c557b.jpg?1663053073';
     private _cardName: string = 'Ivy, Gleeful Spellthief';
 
-    private _ivy: Card;
+    // private _ivy: Card;
 
     constructor() {
-        this._ivy = new Card(this._cardName, this._showcaseImage);
+        //this._ivy = new Card(this._cardName, this._showcaseImage);
     }
 
-    ivy(): Card {
-        return this._ivy;
-    }
+    // ivy(): Card {
+    //     return this._ivy;
+    // }
 
     useShowcaseImage(): void {
-        this._ivy.imagePath = this._showcaseImage;
+        // this._ivy.imagePath = this._showcaseImage;
     }
 
     useNormalImage(): void {
-        this._ivy.imagePath = this._normalImage;
+        // this._ivy.imagePath = this._normalImage;
     }
 }

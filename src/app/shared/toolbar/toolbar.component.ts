@@ -28,6 +28,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.isExpanded = !this.isExpanded;
     }
 
+    callAPI(): void {
+        this.data.callAPI('Ivy, Gleeful Spellthief');
+    }
+
     onToggle($event: MatSlideToggleChange) {
         this.data.useShowcaseVersion = $event.checked;
         console.log('onToggle is logging ' + this.data.useShowcaseVersion);

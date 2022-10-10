@@ -1,9 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Card } from '../shared/card.model';
 @Component({
-  selector: 'app-drag-drop',
-  templateUrl: './drag-drop.component.html',
-  styleUrls: ['./drag-drop.component.scss'],
+    selector: 'app-drag-drop',
+    templateUrl: './drag-drop.component.html',
+    styleUrls: ['./drag-drop.component.scss']
 })
-export class DragDropComponent {
-  items = ['item 0','item 1','item 2','item 3','item 4','item 5','item 6','item 7']
+export class DragDropComponent implements OnInit {
+    stack: Card[] = [];
+
+    ngOnInit(): void {
+        this.addCardToStack(
+            new Card(
+                'Lightning Bolt',
+                'https://cards.scryfall.io/normal/front/c/b/cb9b9a9d-ae4c-4e04-bf9d-cae48f01292c.jpg?1559596782'
+            )
+        );
+    }
+    addCardToStack(card: Card) {
+        this.stack.push(card);
+    }
+
+    removeCardFromStack(card: Card) {
+        this.stack.splice(
+            this.stack.findIndex((x) => x.name === card.name),
+            1
+        );
+    }
 }
