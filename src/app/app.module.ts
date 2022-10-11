@@ -10,6 +10,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialModule } from './material.module';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
+import { CardStackComponent } from './card-stack/card-stack.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
     CardComponent,
     BaseCardComponent,
     DragDropComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    CardStackComponent
   ],
   imports: [
     BrowserModule,

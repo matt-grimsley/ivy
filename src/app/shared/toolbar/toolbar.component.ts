@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
     selector: 'app-toolbar',
@@ -32,7 +32,7 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.data.callAPI('Ivy, Gleeful Spellthief');
     }
 
-    onToggle($event: MatSlideToggleChange) {
+    onToggle($event: MatCheckboxChange) {
         this.data.useShowcaseVersion = $event.checked;
         console.log('onToggle is logging ' + this.data.useShowcaseVersion);
     }

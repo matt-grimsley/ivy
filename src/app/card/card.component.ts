@@ -12,7 +12,6 @@ export class CardComponent implements OnInit {
     @Input() card: Card = new Card('cardback', 'src/assets/card-back.jpg');
 
     constructor(private cardService: CardService) {
-        // this.card = cardService.ivy();
     }
 
     ngOnInit(): void {}
