@@ -1,6 +1,6 @@
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <div class="example-box" *ngFor="let card of stack" cdkDrag>
     {{card.name}}
-    <img *cdkDragPreview [src]="card.imagePath" [alt]="card.name">
+    <img *cdkDragPreview class="card-stack-image" [src]="card.imagePath" [alt]="card.name">
   </div>
 </div>
