@@ -12,7 +12,8 @@ export class DragDropComponent implements OnInit {
         this.addCardToStack(
             new Card(
                 'Lightning Bolt',
-                'https://cards.scryfall.io/normal/front/c/b/cb9b9a9d-ae4c-4e04-bf9d-cae48f01292c.jpg?1559596782'
+                'https://cards.scryfall.io/normal/front/c/b/cb9b9a9d-ae4c-4e04-bf9d-cae48f01292c.jpg?1559596782',
+                'Lightning Bolt deals 3 damage to any target.'
             )
         );
     }

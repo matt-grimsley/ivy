@@ -1,3 +1,3 @@
 export class Card {
-    constructor(public name: string, public imagePath: string) {}
+    constructor(public name: string, public imagePath: string, public oracleText: string) {}
 }

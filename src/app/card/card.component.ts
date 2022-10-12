@@ -9,7 +9,7 @@ import { CardService } from '../shared/card.service';
     styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-    @Input() card: Card = new Card('cardback', 'src/assets/card-back.jpg');
+    @Input() card: Card = new Card('cardback', 'src/assets/card-back.jpg', '');
 
     constructor(private cardService: CardService) {
     }

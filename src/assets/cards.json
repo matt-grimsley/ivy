@@ -1,14 +1,17 @@
 [
     {
         "name": "Ancestral Mask",
-        "imagePath": "https://cards.scryfall.io/normal/front/c/7/c7a19fc5-20f3-48d2-8c12-e012d3b302e7.jpg?1580014720"
+        "imagePath": "https://cards.scryfall.io/normal/front/c/7/c7a19fc5-20f3-48d2-8c12-e012d3b302e7.jpg?1580014720",
+        "oracle_text": "Enchant creature\nEnchanted creature gets +2/+2 for each other enchantment on the battlefield."
     },
     {
         "name": "Curious Obsession",
-        "imagePath": "https://cards.scryfall.io/normal/front/7/f/7f998c62-30c9-4fc3-a045-5becc04f9e3e.jpg?1555039881"
+        "imagePath": "https://cards.scryfall.io/normal/front/7/f/7f998c62-30c9-4fc3-a045-5becc04f9e3e.jpg?1555039881",
+        "oracleText": "Enchant creature\nEnchanted creature gets +1/+1 and has \"Whenever this creature deals combat damage to a player, you may draw a card.\"\nAt the beginning of your end step, if you didn't attack with a creature this turn, sacrifice Curious Obsession."
     },
     {
         "name": "Karn's Temporal Sundering",
-        "imagePath": "https://cards.scryfall.io/normal/front/7/a/7a64c1a4-02ce-49d2-97f2-970b8c33672d.jpg?1562738165"
+        "imagePath": "https://cards.scryfall.io/normal/front/7/a/7a64c1a4-02ce-49d2-97f2-970b8c33672d.jpg?1562738165",
+        "oracleText": "(You may cast a legendary sorcery only if you control a legendary creature or planeswalker.)\nTarget player takes an extra turn after this one. Return up to one target nonland permanent to its owner's hand. Exile Karn's Temporal Sundering."
     }
 ]

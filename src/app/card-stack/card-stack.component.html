@@ -1,6 +1,40 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" *ngFor="let card of stack" cdkDrag>
-    {{card.name}}
-    <img *cdkDragPreview class="card-stack-image" [src]="card.imagePath" [alt]="card.name">
-  </div>
+<!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let card of stack" cdkDrag>
+        {{ card.name }}
+        <img
+            *cdkDragPreview
+            class="card-stack-image"
+            [src]="card.imagePath"
+            [alt]="card.name" />
+    </div>
+</div> -->
+
+<div class="card-pool">
+    <h2>Your Card Pool</h2>
+    <div
+        cdkDropList
+        #cards="cdkDropList"
+        [cdkDropListData]="cardPool"
+        [cdkDropListConnectedTo]="[attached]"
+        class="card-stack"
+        (cdkDropListDropped)="drop($event)">
+        <div class="card-stack-item" *ngFor="let card of cardPool" cdkDrag>
+            {{ card.name }}
+        </div>
+    </div>
+</div>
+
+<div class="card-pool">
+    <h2>Attached Spells</h2>
+    <div
+        cdkDropList
+        #attached="cdkDropList"
+        [cdkDropListData]="stack"
+        [cdkDropListConnectedTo]="[cards]"
+        class="card-stack"
+        (cdkDropListDropped)="drop($event)">
+        <div class="card-stack-item" *ngFor="let card of stack" cdkDrag>
+            {{ card.name }}
+        </div>
+    </div>
 </div>

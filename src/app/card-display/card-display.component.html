@@ -1,0 +1,16 @@
+<div class="container">
+    <table mat-table [dataSource]="cards" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell class="name-header" *matHeaderCellDef>Name</th>
+            <td mat-cell class="name-data" *matCellDef="let card">{{ card.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="oracleText">
+            <th mat-header-cell class="oracle-header" *matHeaderCellDef>Oracle Text</th>
+            <td mat-cell class="oracle-data" *matCellDef="let card">{{ card.oracleText }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnsToDisplay"></tr>
+    </table>
+</div>
