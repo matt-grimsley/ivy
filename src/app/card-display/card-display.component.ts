@@ -1,34 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { distinct, Subscription } from 'rxjs';
 import { Card } from '../shared/card.model';
+import { CardService } from '../shared/card.service';
 
 @Component({
     selector: 'app-card-display',
     templateUrl: './card-display.component.html',
     styleUrls: ['./card-display.component.scss']
 })
-export class CardDisplayComponent implements OnInit {
-
-    private _cards: Card[] = [];
-    get cards(): Card[] {
-        return this._cards;
+export class CardDisplayComponent implements OnInit, OnDestroy {
+    private _stack: Card[] = [];
+    get stack(): Card[] {
+        return this._stack;
     }
-    set cards(value: Card[]) {
-        this._cards = value;
+    set stack(value: Card[]) {
+        this._stack = value;
     }
 
-    columnsToDisplay: string[] = ['name', 'oracleText']
+    private stackSub!: Subscription;
 
-    constructor() {}
+    columnsToDisplay: string[] = ['name', 'oracleText'];
+
+    constructor(private cardService: CardService) {}
 
     ngOnInit(): void {
-        this.cards.push(
+        this.stack.push(
             new Card(
                 'Ivy, Gleeful Spellthief',
                 'assets/card-back.jpg',
                 'Flying\nWhenever a player casts a spell that targets only a single creature other than Ivy, Gleeful Spellthief, you may copy that spell. The copy targets Ivy. (A copy of an Aura spell becomes a token.)'
             )
         );
+        this.stackSub = this.cardService.stackSub.subscribe((cards) => {
+            this.stack = [];
+            this.stack.push(...cards);
+        });
+    }
 
-        debugger
+    ngOnDestroy(): void {
+        this.stackSub?.unsubscribe();
     }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Card } from '../shared/card.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, tap } from 'rxjs';
+import { CardService } from '../shared/card.service';
 
 @Component({
     selector: 'app-card-stack',
@@ -10,10 +11,7 @@ import { Observable, tap } from 'rxjs';
     styleUrls: ['./card-stack.component.scss']
 })
 export class CardStackComponent implements OnInit {
-    private cardUrl = 'assets/cards.json';
-
     private _cardPool: Card[] = [];
-
     get cardPool(): Card[] {
         return this._cardPool;
     }
@@ -29,28 +27,24 @@ export class CardStackComponent implements OnInit {
         this._stack = value;
     }
 
-    constructor(private http: HttpClient) {}
+    private cardSub!: Subscription;
+
+    stackSub = new BehaviorSubject<Card[]>(this.stack);
+
+    constructor(private http: HttpClient, private cardService: CardService) {}
 
     ngOnInit(): void {
-        this.getProducts().subscribe((cards) => {
-            const c: Card[] = cards;
-            this.cardPool.push(...c);
-            this.stack.push(...c);
+        this.cardSub = this.cardService.cardPoolSub.subscribe((cards) => {
+            this.cardPool = [];
+            this.cardPool.push(...cards);
         });
     }
 
-    getProducts(): Observable<Card[]> {
-        return this.http
-            .get<Card[]>(this.cardUrl)
-            .pipe(tap((data) => console.log(data)));
-    }
     drop(event: CdkDragDrop<Card[]>) {
         if (event.previousContainer === event.container) {
-            moveItemInArray(
-                event.container.data,
-                event.previousIndex,
-                event.currentIndex
-            );
+            moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+            this.cardService.cardPool = this.cardPool;
+            this.cardService.stack = this.stack;
         } else {
             transferArrayItem(
                 event.previousContainer.data,
@@ -58,6 +52,8 @@ export class CardStackComponent implements OnInit {
                 event.previousIndex,
                 event.currentIndex
             );
+            this.cardService.cardPool = this.cardPool;
+            this.cardService.stack = this.stack;
         }
     }
 }

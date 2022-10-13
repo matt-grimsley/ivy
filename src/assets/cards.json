@@ -2,7 +2,7 @@
     {
         "name": "Ancestral Mask",
         "imagePath": "https://cards.scryfall.io/normal/front/c/7/c7a19fc5-20f3-48d2-8c12-e012d3b302e7.jpg?1580014720",
-        "oracle_text": "Enchant creature\nEnchanted creature gets +2/+2 for each other enchantment on the battlefield."
+        "oracleText": "Enchant creature\nEnchanted creature gets +2/+2 for each other enchantment on the battlefield."
     },
     {
         "name": "Curious Obsession",

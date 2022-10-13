@@ -6,7 +6,6 @@ import { UserOptions } from './user-options.model';
 import { LocalStorageService } from './local-storage.service';
 import { CardResponse } from './card-response';
 
-type objType = { name: null };
 
 @Injectable({
     providedIn: 'root'

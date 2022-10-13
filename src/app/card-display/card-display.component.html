@@ -1,5 +1,5 @@
 <div class="container">
-    <table mat-table [dataSource]="cards" class="mat-elevation-z8">
+    <table mat-table [dataSource]="stack" class="mat-elevation-z8">
         <ng-container matColumnDef="name">
             <th mat-header-cell class="name-header" *matHeaderCellDef>Name</th>
             <td mat-cell class="name-data" *matCellDef="let card">{{ card.name }}</td>
