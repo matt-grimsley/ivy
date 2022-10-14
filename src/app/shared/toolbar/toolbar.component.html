@@ -4,17 +4,17 @@
         class="example-icon"
         [matMenuTriggerFor]="menu"
         (click)="settingsClicked()"
-    >
+        #menuTrigger>
         <mat-icon>settings</mat-icon>
     </button>
     <span class="spacer">Ivy Tracker</span>
 </mat-toolbar>
-<mat-menu #menu
-    ><mat-checkbox
+<mat-menu #menu>
+    <!-- <mat-checkbox
         class="slide-toggle"
         [checked]="isShowcaseToggleChecked"
         (change)="onToggle($event)"
         >Use Showcase version</mat-checkbox
-    >
-    <button mat-button (click)="callAPI()">Call API</button></mat-menu
->
+    > -->
+    <button mat-menu-item (click)="openDialog()">Add a card</button>
+</mat-menu>

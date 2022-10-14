@@ -12,6 +12,7 @@ import { MaterialModule } from './material.module';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { CardStackComponent } from './card-stack/card-stack.component';
 import { CardDisplayComponent } from './card-display/card-display.component';
+import { AddCardComponent } from './add-card/add-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CardDisplayComponent } from './card-display/card-display.component';
     DragDropComponent,
     ToolbarComponent,
     CardStackComponent,
-    CardDisplayComponent
+    CardDisplayComponent,
+    AddCardComponent
   ],
   imports: [
     BrowserModule,

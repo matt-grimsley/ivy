@@ -1,7 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { AddCardComponent } from 'src/app/add-card/add-card.component';
 
 @Component({
     selector: 'app-toolbar',
@@ -9,16 +12,17 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
     styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit, OnDestroy {
+    // @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
     isExpanded: boolean;
     isShowcaseToggleChecked: boolean;
     dataSub: Subscription;
 
-    constructor(private data: DataService) {
+    constructor(public dialog: MatDialog, private data: DataService) {
+
         this.isExpanded = false;
         this.isShowcaseToggleChecked = false;
         this.dataSub = data.userOptionsSubject.subscribe((opts) => {
             this.isShowcaseToggleChecked = opts.useShowcaseVersion;
-            console.log('bitch I caught this sub, it was ' + opts.useShowcaseVersion);
         });
     }
 
@@ -28,8 +32,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.isExpanded = !this.isExpanded;
     }
 
-    callAPI(): void {
-        this.data.callAPI('Ivy, Gleeful Spellthief');
+    openDialog(): void {
+       const dialogRef = this.dialog.open(AddCardComponent, {restoreFocus: false});
+    //    dialogRef.afterClosed().subscribe(() => this.menuTrigger.focus())
     }
 
     onToggle($event: MatCheckboxChange) {
