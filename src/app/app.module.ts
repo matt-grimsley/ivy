@@ -9,6 +9,7 @@ import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MaterialModule } from './material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { CardStackComponent } from './card-stack/card-stack.component';
 import { CardDisplayComponent } from './card-display/card-display.component';
@@ -31,6 +32,7 @@ import { AddCardComponent } from './add-card/add-card.component';
     BrowserAnimationsModule,
     DragDropModule,
     MatToolbarModule,
+    ReactiveFormsModule,
     MaterialModule
   ],
   providers: [],

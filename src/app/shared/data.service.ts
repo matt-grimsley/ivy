@@ -43,7 +43,7 @@ export class DataService implements OnInit, OnDestroy {
         //   return c as Card;
         //  })
         return this.http.get<CardResponse>(
-            'https://api.scryfall.com/cards/named?exact=' + searchValue
+            encodeURI('https://api.scryfall.com/cards/search?order=name&q=' + searchValue)
         );
     }
 

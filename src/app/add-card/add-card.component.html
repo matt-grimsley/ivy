@@ -1,1 +1,10 @@
-<p>add-card works!</p>
+<mat-form-field appearance="outline">
+    <mat-label>Add a card</mat-label>
+    <input
+        matInput
+        id="newCardInput"
+        type="text"
+        [formControl]="newCardInput"
+        (keyup.enter)="onEnter()" />
+</mat-form-field>
+
