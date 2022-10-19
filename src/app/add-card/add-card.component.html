@@ -7,4 +7,11 @@
         [formControl]="newCardInput"
         (keyup.enter)="onEnter()" />
 </mat-form-field>
+<div class="panel" *ngIf="autocompleteCards">
+    <mat-selection-list #cards [multiple]="false">
+        <mat-list-option *ngFor="let card of autocompleteCards" [value]="card" (click)="onClick(card)">
+            {{card}}
+        </mat-list-option>
+    </mat-selection-list>
+</div>
 

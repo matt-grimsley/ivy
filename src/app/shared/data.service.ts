@@ -5,7 +5,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { UserOptions } from './user-options.model';
 import { LocalStorageService } from './local-storage.service';
 import { CardResponse } from './card-response';
-
+import { IAutocompleteResponse } from './autocomplete-response';
+import { Card } from './card.model';
 
 @Injectable({
     providedIn: 'root'
@@ -33,7 +34,7 @@ export class DataService implements OnInit, OnDestroy {
         this.userOptionsSubject.next(this._userOptions);
     }
 
-    callAPI(searchValue: string): Observable<CardResponse> {
+    cardSearch(searchValue: string): Observable<CardResponse> {
         //  let req = 'https://api.scryfall.com/cards/named?exact=' + searchValue
         //  console.log(req)
         //  this.http.get<Card>(req).subscribe(res => {
@@ -44,6 +45,25 @@ export class DataService implements OnInit, OnDestroy {
         //  })
         return this.http.get<CardResponse>(
             encodeURI('https://api.scryfall.com/cards/search?order=name&q=' + searchValue)
+        );
+    }
+
+    autocomplete(searchValue: string): Observable<IAutocompleteResponse> {
+        return this.http.get<IAutocompleteResponse>(
+            encodeURI('https://api.scryfall.com/cards/autocomplete?q=' + searchValue)
+        );
+    }
+
+    exactSearch(searchValue: string): Observable<CardResponse> {
+        // let req = 'https://api.scryfall.com/cards/named?exact=' + searchValue;
+        // console.log(req);
+        // this.http.get<Card>(req).subscribe((res) => {
+        //     let c: Card = res;
+        //     console.log(c);
+        //     return c;
+        // });
+        return this.http.get<CardResponse>(
+            encodeURI('https://api.scryfall.com/cards/named?exact=' + searchValue)
         );
     }
 

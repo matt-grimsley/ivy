@@ -56,4 +56,13 @@ export class CardService implements OnInit {
             .get<Card[]>('assets/cards.json')
             .pipe(tap((data: Card[]) => console.log(data)));
     }
+
+    addCardToCardPool(card: Card): void {
+        if(!this.cardPool.find(el => el.name === card.name)){
+            debugger
+            console.log('Adding card to Card Pool:' + JSON.stringify(card))
+            this.cardPool.push(card);
+            this.cardPoolSub.next(this.cardPool);
+        }
+    }
 }
