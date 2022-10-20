@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { Card } from './card.model';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,7 @@ export class CardService implements OnInit {
     }
     set cardPool(value: Card[]) {
         this._cardPool = value;
-        this.cardPoolSub.next(this.cardPool);
+        // this.cardPoolSub.next(this.cardPool);
     }
 
     private _stack: Card[] = [];
@@ -34,22 +35,20 @@ export class CardService implements OnInit {
     public cardPoolSub = new BehaviorSubject<Card[]>(this.cardPool);
     public stackSub = new BehaviorSubject<Card[]>(this.stack);
 
-    constructor(private http: HttpClient) {
-        this.getCardsFromJson().subscribe((cards) => {
-            this.cardPool.push(...cards);
-            this.cardPoolSub.next(this.cardPool);
-        });
+    constructor(private http: HttpClient, private storageService: LocalStorageService) {
+        // this.getCardsFromJson().subscribe(cards => {
+        //     this.cardPool.push(...cards);
+        //     this.cardPoolSub.next(this.cardPool);
+        // });
+        this.cardPool = this.storageService.get('cardPool') as Card[];
+        this.cardPoolSub.next(this.cardPool);
+        
+        // this.cardPoolSub.subscribe(cardPool => {
+        //     this.storageService.set('cardPool', cardPool);
+        // });
     }
 
     ngOnInit(): void {}
-
-    useShowcaseImage(): void {
-        // this._ivy.imagePath = this._showcaseImage;
-    }
-
-    useNormalImage(): void {
-        // this._ivy.imagePath = this._normalImage;
-    }
 
     getCardsFromJson(): Observable<Card[]> {
         return this.http
@@ -58,11 +57,12 @@ export class CardService implements OnInit {
     }
 
     addCardToCardPool(card: Card): void {
-        if(!this.cardPool.find(el => el.name === card.name)){
-            debugger
-            console.log('Adding card to Card Pool:' + JSON.stringify(card))
+        if (!this.cardPool.find(el => el.name === card.name)) {
+            debugger;
+            console.log('Adding card to Card Pool:' + JSON.stringify(card));
             this.cardPool.push(card);
             this.cardPoolSub.next(this.cardPool);
+            this.storageService.set('cardPool', this.cardPool);
         }
     }
 }
