@@ -42,7 +42,7 @@ export class CardService implements OnInit {
         // });
         this.cardPool = this.storageService.get('cardPool') as Card[];
         this.cardPoolSub.next(this.cardPool);
-        
+
         // this.cardPoolSub.subscribe(cardPool => {
         //     this.storageService.set('cardPool', cardPool);
         // });
@@ -59,8 +59,19 @@ export class CardService implements OnInit {
     addCardToCardPool(card: Card): void {
         if (!this.cardPool.find(el => el.name === card.name)) {
             debugger;
-            console.log('Adding card to Card Pool:' + JSON.stringify(card));
+            console.log(`Adding card ${card.name}} to card pool:`);
             this.cardPool.push(card);
+            this.cardPoolSub.next(this.cardPool);
+            this.storageService.set('cardPool', this.cardPool);
+        }
+    }
+
+    removeCardFromCardPool(card: Card): void {
+        debugger;
+        const index = this.cardPool.findIndex(el => el.name === card.name);
+        if (index) {
+            console.log(`Removing card ${card.name} from card pool`);
+            this.cardPool.splice(index, 1);
             this.cardPoolSub.next(this.cardPool);
             this.storageService.set('cardPool', this.cardPool);
         }

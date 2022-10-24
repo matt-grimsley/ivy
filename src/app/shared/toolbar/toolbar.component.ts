@@ -5,6 +5,7 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { Subscription } from 'rxjs';
 import { DataService } from '../data.service';
 import { AddCardComponent } from 'src/app/add-card/add-card.component';
+import { RemoveCardComponent } from 'src/app/remove-card/remove-card.component';
 
 @Component({
     selector: 'app-toolbar',
@@ -18,10 +19,9 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     dataSub: Subscription;
 
     constructor(public dialog: MatDialog, private data: DataService) {
-
         this.isExpanded = false;
         this.isShowcaseToggleChecked = false;
-        this.dataSub = data.userOptionsSubject.subscribe((opts) => {
+        this.dataSub = data.userOptionsSubject.subscribe(opts => {
             this.isShowcaseToggleChecked = opts.useShowcaseVersion;
         });
     }
@@ -32,9 +32,13 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this.isExpanded = !this.isExpanded;
     }
 
-    openDialog(): void {
-       const dialogRef = this.dialog.open(AddCardComponent, {restoreFocus: false});
-    //    dialogRef.afterClosed().subscribe(() => this.menuTrigger.focus())
+    addCardDialog(): void {
+        const dialogRef = this.dialog.open(AddCardComponent, { restoreFocus: false });
+        //    dialogRef.afterClosed().subscribe(() => this.menuTrigger.focus())
+    }
+
+    removeCardDialog(): void {
+        const dialogRef = this.dialog.open(RemoveCardComponent, { restoreFocus: false });
     }
 
     onToggle($event: MatCheckboxChange) {

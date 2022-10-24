@@ -14,6 +14,7 @@ import { ToolbarComponent } from './shared/toolbar/toolbar.component';
 import { CardStackComponent } from './card-stack/card-stack.component';
 import { CardDisplayComponent } from './card-display/card-display.component';
 import { AddCardComponent } from './add-card/add-card.component';
+import { RemoveCardComponent } from './remove-card/remove-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddCardComponent } from './add-card/add-card.component';
     ToolbarComponent,
     CardStackComponent,
     CardDisplayComponent,
-    AddCardComponent
+    AddCardComponent,
+    RemoveCardComponent
   ],
   imports: [
     BrowserModule,
