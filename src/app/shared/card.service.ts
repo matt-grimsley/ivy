@@ -67,9 +67,8 @@ export class CardService implements OnInit {
     }
 
     removeCardFromCardPool(card: Card): void {
-        debugger;
         const index = this.cardPool.findIndex(el => el.name === card.name);
-        if (index) {
+        if (index !== undefined) {
             console.log(`Removing card ${card.name} from card pool`);
             this.cardPool.splice(index, 1);
             this.cardPoolSub.next(this.cardPool);

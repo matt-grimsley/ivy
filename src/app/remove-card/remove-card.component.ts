@@ -22,6 +22,7 @@ export class RemoveCardComponent implements OnInit {
     }
 
     onClick(card: Card): void {
+        debugger
         this.cardService.removeCardFromCardPool(card);
     }
 }

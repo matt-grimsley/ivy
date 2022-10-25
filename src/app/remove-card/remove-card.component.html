@@ -3,5 +3,6 @@
         <mat-list-option *ngFor="let card of cardPool" [value]="card" (click)="onClick(card)">
             {{card.name}}
         </mat-list-option>
+        <mat-list-option *ngIf="cardPool.length == 0">No cards in card pool!</mat-list-option>
     </mat-selection-list>
 </div>
